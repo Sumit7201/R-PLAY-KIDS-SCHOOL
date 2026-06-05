@@ -1,15 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import DemosSection from './components/DemosSection';
 import WooCommerceSection from './components/WooCommerceSection';
-import AboutPage from './components/AboutPage';
-import ClassesPage from './components/ClassesPage';
-import TeachersPage from './components/TeachersPage';
-import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import './App.css';
+
+// Lazy-load subpages to reduce initial bundle size and speed up FCP
+const AboutPage = lazy(() => import('./components/AboutPage'));
+const ClassesPage = lazy(() => import('./components/ClassesPage'));
+const TeachersPage = lazy(() => import('./components/TeachersPage'));
+const ContactPage = lazy(() => import('./components/ContactPage'));
+
+// A friendly, child-themed fallback spinner
+const LoadingFallback = () => (
+  <div style={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '60vh',
+    gap: '15px'
+  }}>
+    <div className="spinner" style={{
+      width: '40px',
+      height: '40px',
+      border: '4px solid #00ADEF',
+      borderTopColor: 'transparent',
+      borderRadius: '50%',
+      animation: 'spin 0.8s linear infinite'
+    }} />
+    <p style={{
+      fontWeight: '700',
+      color: '#2E3192',
+      fontSize: '18px',
+      fontFamily: "'Fredoka', sans-serif"
+    }}>
+      Opening R PLAY KIDS world... ✨
+    </p>
+  </div>
+);
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -54,27 +85,33 @@ function App() {
   };
 
   const renderContent = () => {
-    switch (currentPage) {
-      case 'about':
-        return <AboutPage />;
-      case 'classes':
-        return <ClassesPage onAddToCart={handleAddToCart} />;
-      case 'teachers':
-        return <TeachersPage />;
-      case 'shop':
-        return <WooCommerceSection onAddToCart={handleAddToCart} />;
-      case 'contact':
-        return <ContactPage />;
-      case 'home':
-      default:
-        return (
-          <>
-            <Hero onEnrollClick={setCurrentPage} />
-            <DemosSection />
-            <WooCommerceSection onAddToCart={handleAddToCart} />
-          </>
-        );
-    }
+    return (
+      <Suspense fallback={<LoadingFallback />}>
+        {(() => {
+          switch (currentPage) {
+            case 'about':
+              return <AboutPage />;
+            case 'classes':
+              return <ClassesPage onAddToCart={handleAddToCart} />;
+            case 'teachers':
+              return <TeachersPage />;
+            case 'shop':
+              return <WooCommerceSection onAddToCart={handleAddToCart} />;
+            case 'contact':
+              return <ContactPage />;
+            case 'home':
+            default:
+              return (
+                <>
+                  <Hero onEnrollClick={setCurrentPage} />
+                  <DemosSection />
+                  <WooCommerceSection onAddToCart={handleAddToCart} />
+                </>
+              );
+          }
+        })()}
+      </Suspense>
+    );
   };
 
   return (

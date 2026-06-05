@@ -180,6 +180,7 @@ export default function TeachersPage() {
                 <img 
                   src={t.avatar} 
                   alt={t.name} 
+                  loading="lazy"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                 />
               </div>

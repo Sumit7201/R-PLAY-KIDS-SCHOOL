@@ -215,6 +215,7 @@ export default function DemosSection() {
               <img 
                 src={demo.image} 
                 alt={demo.title} 
+                loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} 
                 className="card-img"
               />

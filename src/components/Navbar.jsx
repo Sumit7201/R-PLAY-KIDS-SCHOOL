@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Menu, X, Phone } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Logo } from './SVGIllustrations';
 
 export default function Navbar({ cartCount, onCartClick, currentPage = 'home', onNavigate }) {
@@ -16,27 +16,6 @@ export default function Navbar({ cartCount, onCartClick, currentPage = 'home', o
       padding: '12px 24px',
       fontFamily: "'Quicksand', sans-serif"
     }}>
-      {/* Top Banner */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingBottom: '8px',
-        borderBottom: '1px solid #FFF0EC',
-        marginBottom: '8px',
-        fontSize: '13px',
-        color: '#6B7280',
-        fontWeight: '600'
-      }} className="hidden md:flex">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Phone size={14} color="#10B981" />
-          <span>Call Us: +1 (800) 752-9724</span>
-        </div>
-        <div>
-          <span>✨ Welcome to R PLAY KIDS: Learn. Play. Grow. ✨</span>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div style={{
         display: 'flex',

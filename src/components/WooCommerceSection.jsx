@@ -219,7 +219,7 @@ export default function WooCommerceSection({ onAddToCart }) {
               >
                 {/* Product Image */}
                 <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', height: '110px' }}>
-                  <img src={prod.image} alt={prod.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={prod.image} alt={prod.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <span style={{
                     position: 'absolute',
                     top: '8px',

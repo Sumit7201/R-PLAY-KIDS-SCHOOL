@@ -234,7 +234,7 @@ export default function ClassesPage({ onAddToCart }) {
                 className="demo-card-hover"
               >
                 <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
-                  <img src={item.image} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} className="card-img" />
+                  <img src={item.image} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} className="card-img" />
                   <span style={{
                     position: 'absolute',
                     top: '15px',

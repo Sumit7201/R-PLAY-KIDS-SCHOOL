@@ -205,9 +205,9 @@ export default function Footer({ onNavigate }) {
           &copy; {new Date().getFullYear()} R PLAY KIDS. Built with ❤️ for child development. All Rights Reserved.
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', margin: 0 }}>
-          <span>Created by coding wizards</span>
+          <span>Created by coding Sumit</span>
           <Heart size={12} fill="#ED1C24" color="#ED1C24" />
-          <span>Antigravity</span>
+          <span></span>
         </div>
       </div>
     </footer>
